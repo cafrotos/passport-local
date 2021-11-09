@@ -1,4 +1,6 @@
-# passport-local
+# @cafrotos/passport-local
+
+## This module is forked from passport-local and has added refreshToken field
 
 [Passport](http://passportjs.org/) strategy for authenticating with a username
 and password.
@@ -40,7 +42,7 @@ credentials and calls `done` providing a user.
 
 ```js
 passport.use(new LocalStrategy(
-  function(username, password, done) {
+  function(username, password, refreshToken, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
@@ -59,6 +61,7 @@ The available options are:
 
 * `usernameField` - Optional, defaults to 'username'
 * `passwordField` - Optional, defaults to 'password'
+* `refreshTokenField` - Optional, defaults to 'refreshToken'
 
 Both fields define the name of the properties in the POST body that are sent to the server.
 
